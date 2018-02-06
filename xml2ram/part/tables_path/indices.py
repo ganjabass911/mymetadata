@@ -1,15 +1,10 @@
-from ram_part.index import Index
+from metadata.index import Index
 
 
-def search(self, dom):
+def search(dom):
     indices = []
     for tag in dom.getElementsByTagName("index"):
         temp = Index()
-        if tag.hasChildNodes():
-            for item in tag.getElementsByTagName("item"):
-                pass
-        else:
-            temp.fields.append(tag.getAttribute("field"))
         for name, value in tag.attributes.items():
             if name == "id":
                 temp.id = value
@@ -31,5 +26,9 @@ def search(self, dom):
                 temp.expression = value
             if name == "uuid":
                 temp.uuid = value
+            if name == "field":
+                temp.fields = value
+            if name == "props":
+                temp.props = value
         indices.append(temp)
     return indices

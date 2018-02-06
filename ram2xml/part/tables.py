@@ -1,38 +1,40 @@
-def search(self, dom):
-    domains = dom.createElement("domains")
-    for teg in self.schema.domains:
-        domain = dom.appendChild("domain")
+from ram2xml.part.part_tables import fields
+from ram2xml.part.part_tables import constraints
+from ram2xml.part.part_tables import indices
+
+
+def create(dom, schema):
+    tables = dom.createElement("tables")
+    for teg in schema.tables:
+        table = dom.createElement("table")
         if teg.id is not None:
-            domain.setAttribute("id", teg.id)
+            table.setAttribute("id", teg.id)
+        if teg.schema_id is not None:
+            table.setAttribute("schema_id", teg.schema_id)
         if teg.name is not None:
-            domain.setAttribute("name", teg.name)
+            table.setAttribute("name", teg.name)
         if teg.description is not None:
-            domain.setAttribute("description", teg.description)
-        if teg.data_type_id is not None:
-            domain.setAttribute("data_type_id", teg.data_type_id)
-        if teg.length is not None:
-            domain.setAttribute("length", teg.length)
-        if teg.char_length is not None:
-            domain.setAttribute("char_length", teg.char_length)
-        if teg.precision is not None:
-            domain.setAttribute("precision", teg.precision)
-        if teg.scale is not None:
-            domain.setAttribute("scale", teg.scale)
-        if teg.width is not None:
-            domain.setAttribute("width", teg.width)
-        if teg.align is not None:
-            domain.setAttribute("align", teg.align)
-        if teg.show_null is not None:
-            domain.setAttribute("show_null", teg.show_null)
-        if teg.show_lead_nulls is not None:
-            domain.setAttribute("show_lead_nulls", teg.show_lead_nulls)
-        if teg.thousands_separator is not None:
-            domain.setAttribute("thousands_separator", teg.thousands_separator)
-        if teg.summable is not None:
-            domain.setAttribute("summable", teg.summable)
-        if teg.case_sensitive is not None:
-            domain.setAttribute("case_sensitive", teg.case_sensitive)
+            table.setAttribute("description", teg.description)
+        if teg.props is not None:
+            table.setAttribute("props", teg.props)
+        if teg.ht_table_flags is not None:
+            table.setAttribute("ht_table_flags", teg.ht_table_flags)
+        if teg.access_level is not None:
+            table.setAttribute("access_level", teg.access_level)
+        if teg.can_add is not None:
+            table.setAttribute("can_add", teg.can_add)
+        if teg.can_edit is not None:
+            table.setAttribute("can_edit", teg.can_edit)
+        if teg.can_delete is not None:
+            table.setAttribute("can_delete", teg.can_delete)
+        if teg.temporal_mode is not None:
+            table.setAttribute("temporal_mode", teg.temporal_mode)
+        if teg.means is not None:
+            table.setAttribute("means", teg.means)
         if teg.uuid is not None:
-            domain.setAttribute("uuid", teg.uuid)
-        domains.appendChild(domain)
-    return domains
+            table.setAttribute("uuid", teg.uuid)
+        table.appendChild(fields.create(dom, teg))
+        table.appendChild(constraints.create(dom, teg))
+        table.appendChild(indices.create(dom, teg))
+        tables.appendChild(table)
+    return tables

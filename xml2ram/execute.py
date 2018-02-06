@@ -1,6 +1,7 @@
+
 from xml.dom import minidom
 
-from ram_part.schema import Schema
+from metadata.schema import Schema
 from xml2ram.part import \
     domains, \
     tables
@@ -10,18 +11,18 @@ def __init__(self):
     self.schema = None
 
 
-def start_convert(self, xmlFileName):
-    dom = minidom.parse(xmlFileName)
-    self.schema = Schema()
+def start_convert(xml_file_name):
+    dom = minidom.parse(xml_file_name)
+    schema = Schema()
     for name, value in dom.documentElement.attributes.items():
         if name == "fulltext_engine":
-            self.schema.fulltext_engine = value
+            schema.fulltext_engine = value
         if name == "version":
-            self.schema.version = value
+            schema.version = value
         if name == "name":
-            self.schema.name = value
+            schema.name = value
         if name == "description":
-            self.schema.description = value
-    self.schema.domains = domains.search(dom)
-    self.schema.tables = tables.search(dom)
-    return dom
+            schema.description = value
+    schema.domains = domains.search(dom)
+    schema.tables = tables.search(dom)
+    return schema

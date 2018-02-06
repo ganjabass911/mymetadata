@@ -1,7 +1,7 @@
-from ram_part.constraint import Constraint
+from metadata.constraint import Constraint
 
 
-def search(self,dom):
+def search(dom):
     constraints = []
     for tag in dom.getElementsByTagName("constraint"):
         temp = Constraint()
@@ -12,10 +12,16 @@ def search(self,dom):
                 temp.table_id = value
             if name == "name":
                 temp.name = value
+            if name == "kind":
+                temp.kind = value
+            if name == "items":
+                temp.items = value
             if name == "constraint_type":
                 temp.constraint_type = value
             if name == "reference":
                 temp.reference = value
+            if name == "props":
+                temp.props = value
             if name == "unique_key_id":
                 temp.unique_key_id = value
             if name == "has_value_edit":

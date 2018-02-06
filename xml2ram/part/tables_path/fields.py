@@ -1,7 +1,7 @@
-from ram_part.field import Field
+from metadata.field import Field
 
 
-def search(self, dom):
+def search(dom):
     fields = []
     for tag in dom.getElementsByTagName("field"):
         temp = Field()
@@ -14,13 +14,13 @@ def search(self, dom):
                 temp.position = value
             if name == "name":
                 temp.name = value
-            if name == "russian_short_name":
+            if name == "rname":
                 temp.russian_short_name = value
             if name == "description":
                 temp.description = value
-            if name == "domain_id":
+            if name == "domain":
                 temp.domain_id = value
-            if name == "can_input":
+            if name == "props":
                 temp.can_input = value
             if name == "can_edit":
                 temp.can_edit = value

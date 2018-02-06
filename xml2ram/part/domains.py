@@ -1,7 +1,7 @@
-from ram_part.domain import Domain
+from metadata.domain import Domain
 
 
-def search(self, dom):
+def search(dom):
     domains = []
     for dim in dom.getElementsByTagName("domain"):
         domain = Domain()
@@ -12,8 +12,8 @@ def search(self, dom):
                 domain.name = value
             if name == "description":
                 domain.description = value
-            if name == "data_type_id":
-                domain.data_type_id = value
+            if name == "type":
+                domain.type = value
             if name == "length":
                 domain.length = value
             if name == "char_length":
@@ -22,6 +22,8 @@ def search(self, dom):
                 domain.precision = value
             if name == "scale":
                 domain.scale = value
+            if name == "props":
+                domain.props = value
             if name == "width":
                 domain.width = value
             if name == "align":
