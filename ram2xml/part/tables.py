@@ -33,8 +33,14 @@ def create(dom, schema):
             table.setAttribute("means", teg.means)
         if teg.uuid is not None:
             table.setAttribute("uuid", teg.uuid)
-        table.appendChild(fields.create(dom, teg))
-        table.appendChild(constraints.create(dom, teg))
-        table.appendChild(indices.create(dom, teg))
+        if teg.fields is not None:
+            for tag_fields in teg.fields:
+                table.appendChild(fields.create(dom, tag_fields))
+        if teg.constraints is not None:
+            for tag_constraints in teg.constraints:
+                table.appendChild(constraints.create(dom, tag_constraints))
+        if teg.indices is not None:
+            for tag_indices in teg.indices:
+                table.appendChild(indices.create(dom, tag_indices))
         tables.appendChild(table)
     return tables
