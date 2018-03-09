@@ -156,8 +156,8 @@ def constraints_search(dom):
     for tag in dom.getElementsByTagName("constraint"):
         temp = Constraint()
         for name, value in tag.attributes.items():
-            if name == "id":
-                temp.id = value
+            # if name == "id":
+            #     temp.id = value
             if name == "table_id":
                 temp.table_id = value
             if name == "name":
@@ -166,7 +166,7 @@ def constraints_search(dom):
                 temp.kind = value
             if name == "items":
                 temp.items = value
-            if name == "constraint_type":
+            if name == "kind":
                 temp.constraint_type = value
             if name == "reference":
                 temp.reference = value

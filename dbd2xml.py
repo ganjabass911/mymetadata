@@ -141,8 +141,8 @@ def fields_create(dom, teg):
 
 def constraints_create(dom, teg):
     constraint = dom.createElement("constraint")
-    if teg.id is not None:
-        constraint.setAttribute("id ", teg.id)
+    # if teg.id is not None:
+    #     constraint.setAttribute("id ", teg.id)
     if teg.table_id is not None:
         constraint.setAttribute("table_id ", teg.table_id)
     if teg.name is not None:

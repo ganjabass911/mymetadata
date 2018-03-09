@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dbd_schema fulltext_engine="ORACLE TEXT" version="1.2" name="TASKS" description="Описатель БД TASKS">
-  <custom/>
-  <domains>
+  <custom/>  <domains>
     <domain name="BinData" type="BLOB" align="L"/>
     <domain name="CODE" type="STRING" align="L" width="15" char_length="15"/>
     <domain name="ID пункта" description="Идентификатор пункта содерж." type="LARGEINT" align="L" width="8"/>
